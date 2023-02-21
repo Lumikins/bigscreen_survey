@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/administrator', function () {
-    return view('admin');
-});
+Route::view('/', 'welcome');
+Route::view('/survey', 'survey');
+Route::view('/administrator', 'admin');
