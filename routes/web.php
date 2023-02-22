@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 Route::view('/survey', 'survey');
 Route::view('/administrator', 'admin');
+Route::view('/questions', 'questions');
+Route::view('/dashboard', 'dashboard');
