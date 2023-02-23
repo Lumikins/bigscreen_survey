@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\HelloController;
+// use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
-Route::view('/survey', 'survey');
-Route::view('/administrator', 'admin');
-Route::view('/questions', 'questions');
-Route::view('/dashboard', 'dashboard');
+Route::view('/', 'global.welcome');
+Route::view('/survey', 'global.survey');
+
+// admin login form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// admin logout
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// admin authentication
+Route::post('/authenticate', [UserController::class, 'authenticate']);
+
+Route::view('/questions', 'global.questions');
+
+// admin dashboard
+Route::view('/dashboard', 'admin.dashboard');
