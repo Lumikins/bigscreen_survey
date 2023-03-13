@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('user_answers', function (Blueprint $table) {
             $table->id();
-            $table->string('answer', 255);
+            $table->string('user_answer', 255);
             $table->bigInteger('question_id')->nullable()->unsigned();
             $table->timestamps();
 

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Survey extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['name'];
+  // protected $fillable = ['survey'];
 
-    // one survey belongs to many questions
-    public function question()
-    {
-        //create the many to one relation
-        return $this->belongsTo(Question::class);
-    }
+  // one survey belongs to many questions
+  public function question()
+  {
+    //create the many to one relation
+    return $this->belongsTo(Question::class);
+  }
 }

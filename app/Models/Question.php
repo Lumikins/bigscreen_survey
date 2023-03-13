@@ -7,21 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [ "question", "question_type", "answer_choice", "survey_id"];
+  protected $table = 'questions';
+  protected $guarded = [];
 
-    // many questions belong to one survey  
-    public function survey()
-    {
-        // create the many to one relation
-        return $this->hasMany(Survey::class);
-    }
+  public function survey()
+  {
+    return $this->hasMany(Survey::class);
+  }
 
-    // many answers belong to one question
-        public function answer()
-    {
-        // create the many to one relation
-        return $this->belongsTo(Answer::class);
-    }
+  public function userAnswer()
+  {
+    return $this->belongsTo(UserAnswer::class);
+  }
+
+  public function type()
+  {
+    return $this->hasMany(Type::class);
+  }
+
+  public function questionAnswers()
+  {
+    return $this->belongsToMany(QuestionAnswer::class);
+  }
 }

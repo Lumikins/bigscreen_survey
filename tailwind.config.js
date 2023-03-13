@@ -6,7 +6,11 @@ module.exports = {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            boxShadow: {
+                myBoxShadow: "2px 5px 10px rgba(0, 0, 0, 0.5)",
+            },
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };

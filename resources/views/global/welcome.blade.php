@@ -48,7 +48,7 @@
 						<div class="flex lg:flex-1">
 							<a href="/" class="-m-1.5 p-1.5">
 								<span class="sr-only">Bigscreen Survey</span>
-								<img class="h-8" src="https://www.bigscreenvr.com/images/logos/bigscreen.svg" alt="">
+								<img class="h-8" src="https://www.bigscreenvr.com/images/logos/bigscreen.svg" alt="Bigscreen">
 							</a>
 						</div>
 						<div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -80,7 +80,7 @@
 								<p class="mt-2 text-lg leading-8 text-slate-200">Nous essayons toujours de nous améliorer et nous avons besoin de votre aide pour y parvenir.
 								</p>
 								<div class="mt-10 flex items-center justify-center gap-x-6">
-									<a href="/survey" class="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Répondez à notre sondage</a>
+									<a href="/survey" class="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Répondez à notre sondage</a>
 								</div>
 							</div>
 						</div>

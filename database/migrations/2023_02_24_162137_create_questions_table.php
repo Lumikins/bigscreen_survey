@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question', 255); // the question text
-            $table->enum('question_type', ['A', 'B', 'C']); // the question types - A multiple, B open text, C 1-5
-            $table->string('answer_choice', 255)->nullable(); // answer field according to type
+            $table->string('body', 255);
             $table->bigInteger('survey_id')->nullable()->unsigned(); // see fk comment bellow
+            $table->bigInteger('type_id')->nullable()->unsigned(); // see fk comment bellow
             $table->timestamps();
 
             // foreign key to point to the surveys table
             $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
+
+            // foreign key to point to the types table
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 

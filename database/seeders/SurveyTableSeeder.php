@@ -15,7 +15,7 @@ class SurveyTableSeeder extends Seeder
     {
         // create data in the survey table
         Survey::create([
-            'name' => 'My bigscreen survey',
+            'survey' => 'My bigscreen survey',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

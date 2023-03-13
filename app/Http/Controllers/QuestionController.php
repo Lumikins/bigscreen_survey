@@ -13,7 +13,7 @@ class QuestionController extends Controller
 
     public function questions()
     {
-        $questions = Question::all();
-        return view('questions', compact('questions'));
+        $questions = Question::index();
+        return view('survey', compact('survey'));
     }
 }
