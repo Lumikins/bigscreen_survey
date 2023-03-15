@@ -177,21 +177,77 @@
           <!-- Remove class [ h-64 ] when adding a card block -->
           <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12">
               <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
-              <div class="w-full h-[300%] flex gap-10">
-                <canvas id="myPieChart"></canvas>
+              <div class="w-full h-[300%] flex flex-col gap-10">
+                <canvas id="myPieChart1"></canvas>
+                <canvas id="myPieChart2"></canvas>
+                <canvas id="myPieChart3"></canvas>
                 <canvas id="myRadarChart"></canvas>
               </div>
           </div>
       </div>
+
+      <!-- Import chart.js library and show charts -->
+
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
-        const ctx = document.getElementById('myPieChart');
-        new Chart(ctx, {
+        const myPieChart1 = document.getElementById('myPieChart1');
+        new Chart(myPieChart1, {
           type: 'pie',
           data: {
+            // The question answers as data labels
+            labels: ['Oculus Rift/s', 'HTC Vive', 'Windows Mixed Reality', 'PSVR',],
+            datasets: [{
+              // The question body as dataset label
+              label: 'Marque de casque',
+              // Sum of all answers
+              data: [{{$countAnswerA['Oculus Rift/s']}},{{$countAnswerA['HTC Vive']}},{{$countAnswerA['Windows Mixed Reality']}},{{$countAnswerA['PSVR']}}],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+      <script>
+        const pie2 = document.getElementById('myPieChart2');
+        new Chart(pie2, {
+          type: 'pie',
+          data: {
+            // these are the question answers
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
+              // the question
               label: '# of Votes',
+              // get sum of all answers
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+      <script>
+        const pie3 = document.getElementById('myPieChart3');
+        new Chart(pie3, {
+          type: 'pie',
+          data: {
+            // these are the question answers
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              // the question
+              label: '# of Votes',
+              // get sum of all answers
               data: [12, 19, 3, 5, 2, 3],
               borderWidth: 1
             }]
@@ -210,9 +266,11 @@
         new Chart(ctx2, {
           type: 'radar',
           data: {
+            // short question
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
               label: '# of Votes',
+              // average of answers
               data: [12, 19, 3, 5, 2, 3],
               borderWidth: 1
             }]

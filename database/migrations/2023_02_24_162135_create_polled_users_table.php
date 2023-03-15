@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('polled_user', function (Blueprint $table) {
+        Schema::create('polled_users', function (Blueprint $table) {
             $table->id();
             $table->string('email', 255);
+            $table->string('hash');
             $table->timestamps();
         });
     }

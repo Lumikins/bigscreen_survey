@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('user_answer', 255);
             $table->bigInteger('question_id')->nullable()->unsigned();
+            $table->bigInteger('polled_user_id')->nullable()->unsigned();
             $table->timestamps();
 
             // create fk with the questions table
             $table->foreign('question_id')->references('id')->on('questions');
+            // create fk with the polled user table
+            $table->foreign('polled_user_id')->references('id')->on('polled_users');
         });
     }
 

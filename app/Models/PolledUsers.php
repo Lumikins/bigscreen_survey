@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Polled_User extends Model
+class PolledUsers extends Model
 {
   use HasFactory;
 
-  // protected $fillable = ['polled_user'];
+  protected $fillable = ['email', 'hash'];
 
   // one polled_user belongs to many answers
   public function userAnswer()

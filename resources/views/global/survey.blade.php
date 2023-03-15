@@ -21,72 +21,84 @@
 		</svg>
 	</div>
   <h1 class="text-3xl mt-5">Sondage BigScreen</h1>
+  @if(session('success'))
+  <div class="p-4 mb-4 mt-4 text-lg text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+    <span class="font-medium">Toute l’équipe de Bigscreen vous remercie pour votre engagement. Grâce à votre investissement, nous vous préparons une application toujours plus facile à utiliser, seul ou en famille.
+      Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez cette adresse: <a href="{{session('success')}}" target="_blank" class="hover:underline focus:underline">consulter les réponses</a></span>
+  </div>
+  @endif
+  @if(session('error'))
+  <div>
+    <p>{{session('error')}}</p>
+  </div>
+  @endif
   @unless (count($question) == 0)
     <!-- Create Form -->
-    <form id="form" class="bg-white max-w-3xl my-12 mx-auto py-7 px-5 shadow-myBoxShadow">
+    <form id="form" action="/submitform" method="POST" class="bg-white max-w-3xl my-12 mx-auto py-7 px-5 shadow-myBoxShadow">
       @csrf
       {{-- question 1 --}}
       <div class="text-left mb-6">
-        <label for="email" id="label-email" class="block mb-2.5">
+        <label for="email_{{$question[0]->id}}" id="label-email" class="block mb-2.5">
           {{$question[0]->id}}. {{$question[0]->body}}
         </label>
   
         <!-- Input Type Email-->
         <input type="email"
-          id="email"
+          id="email_{{$question[0]->id}}"
+          name="mail_{{$question[0]->id}}"
           placeholder="Votre adresse email"
           class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]"
            />
       </div>
       {{-- question 2 --}}
       <div class="text-left mb-6">
-        <label for="age" id="label-age" class="block mb-2.5">
+        <label for="age_{{$question[1]->id}}" id="label-age" class="block mb-2.5">
           {{$question[1]->id}}. {{$question[1]->body}}
         </label>
-
         <input type="text"
           inputmode="numeric"
           pattern="[0-9]+"
-          id="age"
+          id="age_{{$question[1]->id}}"
+          name="age_{{$question[1]->id}}"
           placeholder="Votre âge"
           class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]"
            />
       </div>
       {{-- question 3 --}}
       <div class="text-left mb-6">
-        <label for="sex" id="label-sex" class="block mb-2.5">
+        <label for="sex_{{$question[2]->id}}" id="label-sex" class="block mb-2.5">
           {{$question[2]->id}}. {{$question[2]->body}}
         </label>
         
         <!-- Dropdown options -->
-        <select name="sex" id="sex" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->answer}}" selected="selected">{{$answer[0]->question_answer}}</option>
-          <option value="{{$answer[0]->answer}}">{{$answer[1]->question_answer}}</option>
-          <option value="{{$answer[0]->answer}}">{{$answer[2]->question_answer}}</option>
+        <select name="sex_{{$question[2]->id}}" id="sex_{{$question[2]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[0]->question_answer}}" selected="selected">{{$answer[0]->question_answer}}</option>
+          <option value="{{$answer[1]->question_answer}}">{{$answer[1]->question_answer}}</option>
+          <option value="{{$answer[2]->question_answer}}">{{$answer[2]->question_answer}}</option>
         </select>
       </div>
       {{-- question 4 --}}
       <div class="text-left mb-6">
-        <label for="people" id="label-people" class="block mb-2.5">
+        <label for="people_{{$question[3]->id}}" id="label-people" class="block mb-2.5">
           {{$question[3]->id}}. {{$question[3]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="people" id="people" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selected">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="people_{{$question[3]->id}}" id="people_{{$question[3]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selected">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 5 --}}
       <div class="text-left mb-6">
-        <label for="job" id="label-job" class="block mb-2.5">
+        <label for="job_{{$question[4]->id}}" id="label-job" class="block mb-2.5">
           {{$question[4]->id}}. {{$question[4]->body}}
         </label>
-
         <input type="text"
-          id="job"
+          id="job_{{$question[4]->id}}"
+          name="job_{{$question[4]->id}}"
           placeholder="Votre profession"
           class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]"
            />
@@ -97,25 +109,29 @@
           <small>(Plusieurs choix possibles)</small>
         </label>
         <!-- Input Type Checkbox -->
-        <label for="inp-1" class="block mb-2.5">
+        <label for="model_{{$answer[8]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-1"
+            name="model_{{$question[5]->id}}"
+            id="model_{{$answer[8]->id}}"
+            value="{{$answer[8]->question_answer}}"
             class="inline-block mr-1">{{$answer[8]->question_answer}}</label>
-        <label for="inp-2" class="block mb-2.5">
+        <label for="model_{{$answer[9]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-2"
+            name="model_{{$question[5]->id}}"
+            id="model_{{$answer[9]->id}}"
+            value="{{$answer[9]->question_answer}}"
             class="inline-block mr-1">{{$answer[9]->question_answer}}</label>
-        <label for="inp-3" class="block mb-2.5">
+        <label for="model_{{$answer[10]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-3"
+            name="model_{{$question[5]->id}}"
+            id="model_{{$answer[10]->id}}"
+            value="{{$answer[10]->question_answer}}"
             class="inline-block mr-1">{{$answer[10]->question_answer}}</label>
-        <label for="inp-4" class="block mb-2.5">
+        <label for="model_{{$answer[11]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-4"
+            name="model_{{$question[5]->id}}"
+            id="model_{{$answer[11]->id}}"
+            value="{{$answer[11]->question_answer}}"
             class="inline-block mr-1">{{$answer[11]->question_answer}}</label>
       </div>
       {{-- question 7 --}}
@@ -124,35 +140,41 @@
           <small>(Plusieurs choix possibles)</small>
         </label>
         <!-- Input Type Checkbox -->
-        <label for="inp-5" class="block mb-2.5">
+        <label for="store_{{$answer[12]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-5"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[12]->id}}"
+            value="{{$answer[12]->question_answer}}"
             class="inline-block mr-1">{{$answer[12]->question_answer}}</label>
-        <label for="inp-6" class="block mb-2.5">
+        <label for="store_{{$answer[13]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-6"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[13]->id}}"
+            value="{{$answer[13]->question_answer}}"
             class="inline-block mr-1">{{$answer[13]->question_answer}}</label>
-        <label for="inp-7" class="block mb-2.5">
+        <label for="store_{{$answer[14]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-7"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[14]->id}}"
+            value="{{$answer[14]->question_answer}}"
             class="inline-block mr-1">{{$answer[14]->question_answer}}</label>
-        <label for="inp-8" class="block mb-2.5">
+        <label for="store_{{$answer[15]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-8"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[15]->id}}"
+            value="{{$answer[15]->question_answer}}"
             class="inline-block mr-1">{{$answer[15]->question_answer}}</label>
-        <label for="inp-9" class="block mb-2.5">
+        <label for="store_{{$answer[16]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-9"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[16]->id}}"
+            value="{{$answer[16]->question_answer}}"
             class="inline-block mr-1">{{$answer[16]->question_answer}}</label>
-        <label for="inp-10" class="block mb-2.5">
+        <label for="store_{{$answer[17]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-10"
+            name="store_{{$question[6]->id}}"
+            id="store_{{$answer[17]->id}}"
+            value="{{$answer[17]->question_answer}}"
             class="inline-block mr-1">{{$answer[17]->question_answer}}</label>
       </div>
       {{-- question 8 --}}
@@ -161,44 +183,49 @@
           <small>(Plusieurs choix possibles)</small>
         </label>
         <!-- Input Type Checkbox -->
-        <label for="inp-11" class="block mb-2.5">
+        <label for="brand_{{$answer[18]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-11"
+            name="brand_{{$question[7]->id}}"
+            id="brand_{{$answer[18]->id}}"
+            value="{{$answer[18]->question_answer}}"
             class="inline-block mr-1">{{$answer[18]->question_answer}}</label>
-        <label for="inp-12" class="block mb-2.5">
+        <label for="brand_{{$answer[19]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-12"
+            name="brand_{{$question[7]->id}}"
+            id="brand_{{$answer[19]->id}}"
+            value="{{$answer[19]->question_answer}}"
             class="inline-block mr-1">{{$answer[19]->question_answer}}</label>
-        <label for="inp-13" class="block mb-2.5">
+        <label for="brand_{{$answer[20]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-13"
+            name="brand_{{$question[7]->id}}"
+            id="brand_{{$answer[20]->id}}"
+            value="{{$answer[20]->question_answer}}"
             class="inline-block mr-1">{{$answer[20]->question_answer}}</label>
-        <label for="inp-14" class="block mb-2.5">
+        <label for="brand_{{$answer[21]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-14"
+            name="brand_{{$question[7]->id}}"
+            id="brand_{{$answer[21]->id}}"
+            value="{{$answer[21]->question_answer}}"
             class="inline-block mr-1">{{$answer[21]->question_answer}}</label>
-        <label for="inp-15" class="block mb-2.5">
+        <label for="brand_{{$answer[22]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-15"
+            name="brand_{{$question[7]->id}}"
+            id="brand_{{$answer[22]->id}}"
+            value="{{$answer[22]->question_answer}}"
             class="inline-block mr-1">{{$answer[22]->question_answer}}</label>
       </div>
       {{-- question 9 --}}
       <div class="text-left mb-6">
-        <label for="watch" id="label-watch" class="block mb-2.5">
+        <label for="watch_{{$question[8]->id}}" id="label-watch" class="block mb-2.5">
           {{$question[8]->id}}. {{$question[8]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="watch" id="watch" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selected">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="watch_{{$question[8]->id}}" id="watch_{{$question[8]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selected">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 10 --}}
@@ -207,95 +234,99 @@
           <small>(Plusieurs choix possibles)</small>
         </label>
         <!-- Input Type Checkbox -->
-        <label for="inp-16" class="block mb-2.5">
+        <label for="usage_{{$answer[23]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-16"
+            name="usage_{{$question[9]->id}}"
+            id="usage_{{$answer[23]->id}}"
+            value="{{$answer[23]->question_answer}}"
             class="inline-block mr-1">{{$answer[23]->question_answer}}</label>
-        <label for="inp-17" class="block mb-2.5">
+        <label for="usage_{{$answer[24]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-17"
+            name="usage_{{$question[9]->id}}"
+            id="usage_{{$answer[24]->id}}"
+            value="{{$answer[24]->question_answer}}"
             class="inline-block mr-1">{{$answer[24]->question_answer}}</label>
-        <label for="inp-18" class="block mb-2.5">
+        <label for="usage_{{$answer[25]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-18"
+            name="usage_{{$question[9]->id}}"
+            id="usage_{{$answer[25]->id}}"
+            value="{{$answer[25]->question_answer}}"
             class="inline-block mr-1">{{$answer[25]->question_answer}}</label>
-        <label for="inp-19" class="block mb-2.5">
+        <label for="usage_{{$answer[26]->id}}" class="block mb-2.5">
           <input type="checkbox"
-            name="inp"
-            id="inp-19"
+            name="usage_{{$question[9]->id}}"
+            id="usage_{{$answer[26]->id}}"
+            value="{{$answer[26]->question_answer}}"
             class="inline-block mr-1">{{$answer[26]->question_answer}}</label>
       </div>
       {{-- question 11 --}}
       <div class="text-left mb-6">
-        <label for="image" id="label-image" class="block mb-2.5">
+        <label for="image_{{$question[10]->id}}" id="label-image" class="block mb-2.5">
           {{$question[10]->id}}. {{$question[10]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="image" id="image" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="image_{{$question[10]->id}}" id="image_{{$question[10]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 12 --}}
       <div class="text-left mb-6">
-        <label for="comfort" id="label-comfort" class="block mb-2.5">
+        <label for="comfort_{{$question[11]->id}}" id="label-comfort" class="block mb-2.5">
           {{$question[11]->id}}. {{$question[11]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="comfort" id="people" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="comfort_{{$question[11]->id}}" id="comfort_{{$question[11]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 13 --}}
       <div class="text-left mb-6">
-        <label for="network" id="label-network" class="block mb-2.5">
+        <label for="network_{{$question[12]->id}}" id="label-network" class="block mb-2.5">
           {{$question[12]->id}}. {{$question[12]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="network" id="network" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="network_{{$question[12]->id}}" id="network_{{$question[12]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 14 --}}
       <div class="text-left mb-6">
-        <label for="graphics" id="label-graphics" class="block mb-2.5">
+        <label for="graphics_{{$question[13]->id}}" id="label-graphics" class="block mb-2.5">
           {{$question[13]->id}}. {{$question[13]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="graphics" id="graphics" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="graphics_{{$question[13]->id}}" id="graphics_{{$question[13]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 15 --}}
       <div class="text-left mb-6">
-        <label for="audio" id="label-people" class="block mb-2.5">
+        <label for="audio_{{$question[14]->id}}" id="label-audio" class="block mb-2.5">
           {{$question[14]->id}}. {{$question[14]->body}}
         </label>
         <!-- Dropdown options -->
-        <select name="audio" id="audio" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
-          <option value="{{$answer[0]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[4]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[5]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[6]->question_answer}}</option>
-          <option value="{{$answer[0]->question_answer}}">{{$answer[7]->question_answer}}</option>
+        <select name="audio_{{$question[14]->id}}" id="audio_{{$question[14]->id}}" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%]">
+          <option value="{{$answer[3]->question_answer}}" selected="selcted">{{$answer[3]->question_answer}}</option>
+          <option value="{{$answer[4]->question_answer}}">{{$answer[4]->question_answer}}</option>
+          <option value="{{$answer[5]->question_answer}}">{{$answer[5]->question_answer}}</option>
+          <option value="{{$answer[6]->question_answer}}">{{$answer[6]->question_answer}}</option>
+          <option value="{{$answer[7]->question_answer}}">{{$answer[7]->question_answer}}</option>
         </select>
       </div>
       {{-- question 16 --}}
@@ -305,16 +336,18 @@
         </label>
   
         <!-- Input Type Radio Button -->
-        <label for="notification-1" class="block mb-2.5">
+        <label for="notification_{{$question[15]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="notification-1"
-            name="notification"
+            value="{{$answer[27]->question_answer}}"
+            id="notification_{{$answer[27]->id}}"
+            name="notification_{{$question[15]->id}}"
             class="inline-block mr-1">{{$answer[27]->question_answer}}
         </label>
-        <label for="notification-2" class="block mb-2.5">
+        <label for="notification_{{$question[15]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="notification-2"
-            name="notification"
+            value="{{$answer[28]->question_answer}}"
+            id="notification_{{$answer[28]->id}}"
+            name="notification_{{$question[15]->id}}"
             class="inline-block mr-1">{{$answer[28]->question_answer}}
         </label>
       </div>
@@ -325,16 +358,18 @@
         </label>
   
         <!-- Input Type Radio Button -->
-        <label for="invite-1" class="block mb-2.5">
+        <label for="invite_{{$answer[27]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="invite-1"
-            name="invite"
+            value="{{$answer[27]->question_answer}}"
+            id="invite_{{$answer[27]->id}}"
+            name="invite_{{$question[16]->id}}"
             class="inline-block mr-1">{{$answer[27]->question_answer}}
         </label>
-        <label for="invite-2" class="block mb-2.5">
+        <label for="invite2{{$answer[28]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="invite-2"
-            name="invite"
+            value="{{$answer[28]->question_answer}}"
+            id="invite2{{$answer[28]->id}}"
+            name="invite_{{$question[16]->id}}"
             class="inline-block mr-1">{{$answer[28]->question_answer}}
         </label>
       </div>
@@ -345,16 +380,18 @@
         </label>
   
         <!-- Input Type Radio Button -->
-        <label for="record-1" class="block mb-2.5">
+        <label for="record_{{$answer[27]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="record-1"
-            name="record"
+            value="{{$answer[27]->question_answer}}"
+            id="record_{{$answer[27]->id}}"
+            name="record_{{$question[17]->id}}"
             class="inline-block mr-1">{{$answer[27]->question_answer}}
         </label>
-        <label for="record-2" class="block mb-2.5">
+        <label for="record_{{$answer[28]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="record-2"
-            name="record"
+            value="{{$answer[28]->question_answer}}"
+            id="record_{{$answer[28]->id}}"
+            name="record_{{$question[17]->id}}"
             class="inline-block mr-1">{{$answer[28]->question_answer}}
         </label>
       </div>
@@ -365,16 +402,18 @@
         </label>
   
         <!-- Input Type Radio Button -->
-        <label for="gaming-1" class="block mb-2.5">
+        <label for="gaming_{{$answer[27]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="gaming-1"
-            name="gaming"
+            value="{{$answer[27]->question_answer}}"
+            id="gaming_{{$answer[27]->id}}"
+            name="gaming_{{$question[18]->id}}"
             class="inline-block mr-1">{{$answer[27]->question_answer}}
         </label>
-        <label for="gaming-2" class="block mb-2.5">
+        <label for="gaming_{{$answer[28]->id}}" class="block mb-2.5">
           <input type="radio"
-            id="gaming-2"
-            name="gaming"
+            value="{{$answer[28]->question_answer}}"
+            id="gaming_{{$answer[28]->id}}"
+            name="gaming_{{$question[18]->id}}"
             class="inline-block mr-1">{{$answer[28]->question_answer}}
         </label>
       </div>
@@ -385,7 +424,7 @@
         </label>
   
         <!-- multi-line text input control -->
-        <textarea name="comment" id="comment"
+        <textarea name="comment_{{$question[19]->id}}" id="comment_{{$question[19]->id}}"
           placeholder="Veuillez saisir votre reponse ici" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%] h-32 resize-none" maxlength="500">
         </textarea>
         <div id="the-count">
