@@ -424,9 +424,7 @@
         </label>
   
         <!-- multi-line text input control -->
-        <textarea name="comment_{{$question[19]->id}}" id="comment_{{$question[19]->id}}"
-          placeholder="Veuillez saisir votre reponse ici" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%] h-32 resize-none" maxlength="500">
-        </textarea>
+        <textarea name="comment_{{$question[19]->id}}" id="comment_{{$question[19]->id}}" placeholder="Veuillez saisir votre reponse ici" class="border border-solid border-[#777] rounded-sm p-2.5 block w-[95%] h-32 resize-none" maxlength="500"></textarea>
         <div id="the-count">
           <span id="current"></span>
           <span id="maximum"></span>

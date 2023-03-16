@@ -1,4 +1,4 @@
-let myText = document.getElementById("comment");
+let myText = document.getElementById("comment_20");
 let result = document.getElementById("current");
 let limit = 500;
 
