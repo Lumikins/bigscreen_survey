@@ -1,66 +1,38 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## A propos du projet
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Il s'agit du projet final de l'école multimédia à Paris. Le projet est une application d'enquête qui permet aux utilisateurs de :
 
-## About Laravel
+- Répondre à un sondage.
+- Voir ses propres réponses.
+- Se connecter en tant qu'administrateur.
+- Afficher la liste de toutes les questions en tant qu'administrateur.
+- Afficher les réponses à certaines questions sous forme de graphiques en tant qu'administrateur (en utilisant [chartjs](https://www.chartjs.org/)).
+- Consulter les réponses individuelles au sondage en tant qu'administrateur.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Dépendances
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Avant d'exécuter le code sur votre machine, veuillez vous assurer que vous disposez des dernières versions de :
+- [PHP](https://www.php.net/downloads.php) * PHP 8.2.1 a été utilisé dans ce projet.
+- [MySQL](https://dev.mysql.com/downloads/mysql/).
+- [Laravel](https://laravel.com/docs/10.x/installation).
+- [Composer](https://getcomposer.org/download/).
+- [Node.js et NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- [Visual Studio Code](https://code.visualstudio.com/download) ou tout autre IDE de votre choix.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Exécution du projet
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Afin d'exécuter le code sur votre machine, suivez les instructions ci-dessous :
+- téléchargez le dossier du projet sur votre ordinateur ou clonez le dépôt.
+- Lancez Visual Studio Code.
+- Ouvrez le terminal et exécutez les commandes suivantes :
+    - Ouvrez le dossier du projet (dézippé) dans votre IDE.
+    - Renommez le fichier .env.example par .env, et remplacez la ligne DB_DATABASE=votre_base_de_donnees par DB_DATABASE=bigscreen_survey.
+    - npm i (installe toutes les dépendances utilisées dans ce projet).
+    - npx vite (ou npm run dev) pour lancer l'environnement de développement.
+    - php artisan migrate:refresh --seed (exécute toutes les migrations Laravel, et crée l'utilisateur administrateur dans la base de données).
+    - php artisan serve (exécute l'adresse du serveur de développement Laravel, habituellement sur : http://127.0.0.1:8000).
+    - Pour vous connecter en tant qu'administrateur, utilisez admin@bigscreenvr.com comme adresse mail et admin123 comme mot de passe.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Il s'agit d'une application à source ouverte sous [licence de MIT](https://opensource.org/licenses/MIT).
