@@ -31,6 +31,7 @@ Afin d'exécuter le code sur votre machine, suivez les instructions ci-dessous :
     - npx vite (ou npm run dev) pour lancer l'environnement de développement.
     - php artisan migrate:refresh --seed (exécute toutes les migrations Laravel, et crée l'utilisateur administrateur dans la base de données).
     - php artisan serve (exécute l'adresse du serveur de développement Laravel, habituellement sur : http://127.0.0.1:8000).
+    - Pour vous connecter en tant qu'administrateur, utilisez admin@bigscreenvr.com comme adresse mail et admin123 comme mot de passe.
 
 ## License
 
