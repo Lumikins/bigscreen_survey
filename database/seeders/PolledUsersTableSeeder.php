@@ -14,6 +14,6 @@ class PolledUsersTableSeeder extends Seeder
   public function run(): void
   {
     // create polled users seeder
-    PolledUsers::factory()->count(10)->create();
+    // PolledUsers::factory()->count(10)->create();
   }
 }

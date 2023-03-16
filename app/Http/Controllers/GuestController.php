@@ -24,8 +24,8 @@ class GuestController extends Controller
   {
     $questions = Question::all();
     $userAnswers = UserAnswer::all();
-    $guest = PolledUsers::where('hash', '=', urldecode($hash))->with('userAnswer')->first();
-    if (!is_null($guest)) {
+    $guest = PolledUsers::where('hash', '=', urldecode($hash))->with('userAnswer')->first();    
+    if ($guest) {
       return view('global.results', compact('questions', 'userAnswers'));
     } else {
       $err = 'Page not found';

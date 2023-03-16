@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PolledUsers;
 use App\Models\User;
 use App\Models\Question;
 use App\Models\Type;
@@ -49,6 +50,12 @@ class UserController extends Controller
     return view("admin.questions", compact('questions', 'type'));
   }
 
+  // get all user survey answers
+  public function userAnswers(){
+    $polled_users = PolledUsers::with('userAnswer')->get();        
+    return view("admin.answers",compact('polled_users'));
+}
+
   // show admin dashboard with chartjs graphs
   function showGraphs()
   {
@@ -58,23 +65,23 @@ class UserController extends Controller
       $countAnswerA[$answer]++;
     }
 
-    // $reponsesB = QuestionAnswer::where('id', 13)->pluck('question_answer');
-    // $countsB = ['SteamVR' => 0, 'Oculus store' => 0, 'Viveport' => 0, 'Playstation VR' => 0, 'Google Play' => 0, 'Windows store' => 0];
-    // foreach ($reponsesB as $reponse) {
-    //   $countsB[$reponse]++;
-    // }
+    $answerB = UserAnswer::where('question_id', 7)->pluck('user_answer');
+    $countAnswerB = ['SteamVR' => 0, 'Oculus store' => 0, 'Viveport' => 0, 'Playstation VR' => 0, 'Google Play' => 0, 'Windows store' => 0];
+    foreach ($answerB as $answer) {
+      $countAnswerB[$answer]++;
+    }
 
-    // $reponsesC = QuestionAnswer::where('id', 24)->pluck('question_answer');
-    // $countsC = ['Regarder des émissions TV en direct' => 0, 'Regarder des films' => 0, 'Jouer en solo' => 0, 'Jouer en team' => 0];
-    // foreach ($reponsesC as $reponse) {
-    //   $countsC[$reponse]++;
-    // }
+    $answerC = UserAnswer::where('question_id', 10)->pluck('user_answer');
+    $countAnswerC = ['Regarder des émissions TV en direct' => 0, 'Regarder des films' => 0, 'Jouer en solo' => 0, 'Jouer en team' => 0];
+    foreach ($answerC as $answer) {
+      $countAnswerC[$answer]++;
+    }
 
-    // $reponsesD = QuestionAnswer::whereBetween('question_id', [11, 15])->get()->groupBy('question_id');
-    // $countsD = array();
-    // foreach ($reponsesD as $key => $reponse) {
-    //   $countsD[$key] = $reponse->sortBy('question_answer')->pluck('question_answer')->countBy()->toArray();
-    // }
-    return view('admin.dashboard', compact('countAnswerA'));
+    $answerD = UserAnswer::whereBetween('question_id', [11, 15])->get()->groupBy('question_id');
+    $countAnswerD = array();
+    foreach ($answerD as $key => $answer) {
+      $countAnswerD[$key] = $answer->sortBy('user_answer')->pluck('user_answer')->countBy()->toArray();
+    }
+    return view('admin.dashboard', compact('countAnswerA', 'countAnswerB', 'countAnswerC', 'countAnswerD'));
   }
 }

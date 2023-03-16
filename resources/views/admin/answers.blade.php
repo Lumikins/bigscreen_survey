@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
 
-  <title>Bigscreen | Dashboard</title>
+  <title>Bigscreen | Answers</title>
 </head>
 <body>
  <!-- component -->
@@ -178,148 +178,13 @@
           <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12">
               <!-- Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border -->
               <div class="w-full h-[300%] flex flex-col gap-10">
-                <canvas id="myPieChart1"></canvas>
-                <canvas id="myPieChart2"></canvas>
-                <canvas id="myPieChart3"></canvas>
-                <canvas id="myRadarChart"></canvas>
+                <h1 class="text-center">Liste des réponses pour {{$polled_users->count()}} sondés</h1>
+                @foreach ($polled_users as $user)
+                  <a href="survey/{{$user->hash}}" target="__blank" class="hover:underline">{{$user->hash}}</a>
+                @endforeach
               </div>
           </div>
       </div>
-
-      <!-- Import chart.js library and show charts -->
-
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>
-        const myPieChart1 = document.getElementById('myPieChart1');
-        new Chart(myPieChart1, {
-          type: 'pie',
-          data: {
-            // The question answers as data labels
-            labels: ['Oculus Rift/s', 'HTC Vive', 'Windows Mixed Reality', 'PSVR',],
-            datasets: [{
-              // The question body as dataset label
-              label: 'Marque de casque',
-              // Sum of all answers
-              data: [{{$countAnswerA['Oculus Rift/s']}},{{$countAnswerA['HTC Vive']}},{{$countAnswerA['Windows Mixed Reality']}},{{$countAnswerA['PSVR']}}],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-      <script>
-        const myPieChart2 = document.getElementById('myPieChart2');
-        new Chart(myPieChart2, {
-          type: 'pie',
-          data: {
-            labels: ['SteamVR', 'Oculus store', 'Viveport', 'Playstation VR', 'Google Play', 'Windows store'],
-            datasets: [{
-              label: 'Magasin d’applications',
-              data: [{{$countAnswerB['SteamVR']}},{{$countAnswerB['Oculus store']}},{{$countAnswerB['Viveport']}},{{$countAnswerB['Playstation VR']}}, {{$countAnswerB['Google Play']}}, {{$countAnswerB['Windows store']}}],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-      <script>
-        const myPieChart3 = document.getElementById('myPieChart3');
-        new Chart(myPieChart3, {
-          type: 'pie',
-          data: {
-            labels: ['Regarder des émissions TV en direct', 'Regarder des films', 'Jouer en solo', 'Jouer en team'],
-            datasets: [{
-              label: 'Utilisation principale',
-              data: [{{$countAnswerC['Regarder des émissions TV en direct']}},{{$countAnswerC['Regarder des films']}},{{$countAnswerC['Jouer en solo']}},{{$countAnswerC['Jouer en team']}}],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-      <script>
-        const myRadarChart = document.getElementById('myRadarChart');
-        new Chart(myRadarChart, {
-          type: 'radar',
-          data: {
-            // short question
-            labels: ['Qualité de l’image', 'Confort d’utilisation', 'Connexion réseau', 'Qualité des graphismes', 'Qualité audio'],
-            datasets: [
-              @foreach($countAnswerD as $question_id=>$reponses)
-                {
-                  @if($question_id == 11)
-                  label: '1',
-                  backgroundColor: 'rgba(15, 255, 249, 0.3)',
-                  @elseif($question_id == 12)
-                  label: '2',
-                  backgroundColor: 'rgba(255, 106, 178, 0.3)',
-                  @elseif($question_id == 13)
-                  label: '3',
-                  backgroundColor: 'rgba(217, 240, 17, 0.3)',
-                  @elseif($question_id == 14)
-                  label: '4',
-                  backgroundColor: 'rgba(107, 255, 165, 0.3)',
-                  @elseif($question_id == 15)
-                  label: '5',    
-                  backgroundColor: 'rgba(255, 99, 132, 0.1)',        
-                  @endif
-                  data: [{{implode(',',$reponses)}}],
-                  fill: true,
-                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                  borderColor: 'rgb(54, 162, 235)',
-                  pointBackgroundColor: 'rgb(54, 162, 235)',
-                  pointBorderColor: '#fff',
-                  pointHoverBackgroundColor: '#fff',
-                  pointHoverBorderColor: 'rgb(54, 162, 235)'
-                }, 
-             @endforeach
-            ]
-          },
-          options: {
-            elements: {
-              line: {
-                borderWidth: 3
-              }
-            }
-          },
-        });
-      </script>
-      <script>
-          var sideBar = document.getElementById("mobile-nav");
-          var openSidebar = document.getElementById("openSideBar");
-          var closeSidebar = document.getElementById("closeSideBar");
-          sideBar.style.transform = "translateX(-260px)";
-
-          function sidebarHandler(flag) {
-              if (flag) {
-                  sideBar.style.transform = "translateX(0px)";
-                  openSidebar.classList.add("hidden");
-                  closeSidebar.classList.remove("hidden");
-              } else {
-                  sideBar.style.transform = "translateX(-260px)";
-                  closeSidebar.classList.add("hidden");
-                  openSidebar.classList.remove("hidden");
-              }
-          }
-      </script>
   </dh-component>
 </div>
 </body>

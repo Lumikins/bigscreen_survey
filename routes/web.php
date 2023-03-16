@@ -44,3 +44,6 @@ Route::get('/dashboard', [UserController::class, 'showGraphs'])->middleware('aut
 
 // admin questions page
 Route::get('/questions', [UserController::class, 'questionsTable'])->middleware('auth');
+
+// all user survey responses
+Route::get('/answers', [UserController::class, 'userAnswers'])->middleware('auth');

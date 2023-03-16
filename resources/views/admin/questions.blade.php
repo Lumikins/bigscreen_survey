@@ -46,7 +46,7 @@
                             </li>
                             <li
                                 class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
-                                <a href="javascript:void(0)"
+                                <a href="/questions"
                                     class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-article"
                                         width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5"
@@ -65,7 +65,7 @@
                             </li>
                             <li
                                 class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
-                                <a href="javascript:void(0)"
+                                <a href="/answers"
                                     class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-activity" width="18" height="18"
@@ -142,7 +142,7 @@
                         <ul class="mt-12">
                             <li
                                 class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
-                                <a href="javascript:void(0)"
+                                <a href="/dashboard"
                                     class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid"
                                         width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5"
@@ -163,7 +163,7 @@
                             </li>
                             <li
                                 class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
-                                <a href="javascript:void(0)"
+                                <a href="questions"
                                     class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-article" width="18" height="18"
@@ -182,7 +182,7 @@
                             </li>
                             <li
                                 class="flex w-full justify-between text-gray-400 hover:text-gray-300 cursor-pointer items-center mb-6">
-                                <a href="javascript:void(0)"
+                                <a href="answers"
                                     class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-activity" width="18" height="18"

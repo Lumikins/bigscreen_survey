@@ -123,7 +123,7 @@ class questionTableSeeder extends Seeder
       'question_answer' => 'SteamVR'
     ]));
     array_push($question7_answers, QuestionAnswer::insertGetId([
-      'question_answer' => 'Occulus store'
+      'question_answer' => 'Oculus store'
     ]));
     array_push($question7_answers, QuestionAnswer::insertGetId([
       'question_answer' => 'Viveport'
@@ -148,10 +148,10 @@ class questionTableSeeder extends Seeder
     ]);
     $question8_answers = array();
     array_push($question8_answers, QuestionAnswer::insertGetId([
-      'question_answer' => 'Occulus Quest'
+      'question_answer' => 'Oculus Quest'
     ]));
     array_push($question8_answers, QuestionAnswer::insertGetId([
-      'question_answer' => 'Occulus Go'
+      'question_answer' => 'Oculus Go'
     ]));
     array_push($question8_answers, QuestionAnswer::insertGetId([
       'question_answer' => 'HTC Vive Pro'
